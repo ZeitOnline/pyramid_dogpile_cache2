@@ -11,8 +11,8 @@ the WSGI application setup instead.
 
 This package is compatible with Python version 2.7 and 3.4.
 
-_`dogpile.cache`: https://pypi.python.org/pypi/dogpile.cache
-_`pyramid_dogpile_cache`: https://pypi.python.org/pypi/pyramid_dogpile_cache
+.. _`dogpile.cache`: https://pypi.python.org/pypi/dogpile.cache
+.. _`pyramid_dogpile_cache`: https://pypi.python.org/pypi/pyramid_dogpile_cache
 
 
 Usage
@@ -108,8 +108,8 @@ Backend arguments work only for strings, thus we support some custom treatment:
     subkeys are supported.
 
 
-_`pylibmc behaviours`: http://sendapatch.se/projects/pylibmc/behaviors.html
-_`coerce_memached_behaviors`: https://github.com/bbangert/beaker/blob/master/beaker/util.py#L343
+.. _`pylibmc behaviours`: http://sendapatch.se/projects/pylibmc/behaviors.html
+.. _`coerce_memached_behaviors`: https://github.com/bbangert/beaker/blob/master/beaker/util.py#L343
 
 Note: As opposed to pyramid_dogpile_cache we don't support overriding the
 key_generator or key_mangler functions yet; we preconfigure them with enhanced
