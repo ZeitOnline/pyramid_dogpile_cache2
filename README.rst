@@ -72,12 +72,31 @@ The following settings are supported:
 
 ``dogpile_cache.backend``
 
-    The default backend for cache regions (e.g. ``'dogpile.cache.memory'``
-    or ``dogpile.cache.pylibmc``).
+    The default backend for cache regions (e.g. ``'dogpile.cache.memory'``,
+    ``dogpile.cache.pylibmc``, etc.).
+
+``dogpile_cache.REGION.backend``
+
+   Backend for the given region.
+
+``dogpile_cache.expiration_time``
+
+    The default expiration time. Can be overridden for individual regions (in
+    seconds).
 
 ``dogpile_cache.REGION.expiration_time``
 
     The expiration time for the given cache region (in seconds).
+
+``dogpile_cache.arguments.*``
+
+    Defaults for backend arguments. Can be overridden for individual regions.
+
+``dogpile_cache.REGION.arguments.*``
+
+    Backend arguments for the given cache region.
+
+Backend arguments work only for strings, thus we support some custom treatment:
 
 ``dogpile_cache.pylibmc_url``
 
