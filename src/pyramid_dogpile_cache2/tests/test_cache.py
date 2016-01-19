@@ -1,9 +1,14 @@
 # coding: utf-8
+import dogpile.cache.compat
 import dogpile.cache.util
 import pyramid_dogpile_cache2.cache
 import pytest
 
 
+@pytest.mark.skipif(
+    dogpile.cache.compat.py3k,
+    reason='dogpile.cache defines string_type=str in both py2 and py3, '
+    'which is not the same thing at all, thus this only breaks in py2')
 def test_key_generator_handles_non_ascii_arguments():
     gen = dogpile.cache.util.function_key_generator(None, lambda: None)
     with pytest.raises(UnicodeEncodeError):
@@ -14,7 +19,7 @@ def test_key_generator_handles_non_ascii_arguments():
 
 
 def test_mangle_key_handles_non_ascii_arguments():
-    with pytest.raises(UnicodeEncodeError):
+    with pytest.raises(Exception):
         dogpile.cache.util.sha1_mangle_key(u'föö')
 
     pyramid_dogpile_cache2.cache.sha1_mangle_key(u'föö')

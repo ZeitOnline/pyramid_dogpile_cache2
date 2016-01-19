@@ -10,7 +10,10 @@ def key_generator(ns, fn, to_str=dogpile.cache.compat.text_type):
     methods as well.
     """
     if isinstance(fn, types.MethodType):
-        cls = fn.im_self.__class__
+        if dogpile.cache.compat.py3k:
+            cls = fn.__self__.__class__
+        else:
+            cls = fn.im_self.__class__
         namespace = u'.'.join([cls.__module__, cls.__name__, fn.__name__])
     else:
         namespace = u'.'.join([fn.__module__, fn.__name__])
