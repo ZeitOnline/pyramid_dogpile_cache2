@@ -25,7 +25,19 @@ setup(
     license='BSD',
     url='https://github.com/zeitonline/pyramid_dogpile_cache2',
 
-    keywords='',
+    keywords='pyramid dogpile.cache',
+    classifiers="""\
+    Environment :: Plugins
+    Framework :: Pyramid
+    Framework :: Paste
+    Intended Audience :: Developers
+    License :: OSI Approved :: BSD License
+    Programming Language :: Python
+    Programming Language :: Python :: 2
+    Programming Language :: Python :: 2.7
+    Programming Language :: Python :: 3
+    Programming Language :: Python :: 3.4
+    """.split('\n')[:-1],
     description=__doc__.strip(),
     long_description='\n\n'.join(open(project_path(name)).read() for name in (
         'README.rst',
