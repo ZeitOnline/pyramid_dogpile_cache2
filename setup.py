@@ -17,11 +17,6 @@ setup(
         'setuptools',
     ],
 
-    extras_require={
-        'test': [
-        ],
-    },
-
     author='Zeit Online',
     author_email='zon-backend@zeit.de',
     license='BSD',
