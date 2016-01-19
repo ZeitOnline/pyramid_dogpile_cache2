@@ -50,7 +50,7 @@ Setup / Paste
 For non-Pyramid WSGI applications that use a paste.ini file, you need to call::
 
     def my_paste_app_factory(global_conf, **local_conf):
-        pyramid_dogpile_cache2.configure_dogpile_cache(global_conf)
+        pyramid_dogpile_cache2.configure_dogpile_cache(local_conf)
         return my_wsgi_callable
 
 
