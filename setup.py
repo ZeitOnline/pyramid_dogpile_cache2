@@ -14,7 +14,9 @@ setup(
     version='1.0.dev0',
 
     install_requires=[
+        'Beaker',  # For parsing pylibmc behaviors from ini file.
         'dogpile.cache',
+        'pyramid_dogpile_cache',  # For ini file parsing helpers.
         'setuptools',
     ],
 
