@@ -1,0 +1,13 @@
+[run]
+branch = True
+source = pyramid_dogpile_cache2
+
+[report]
+precision = 2
+omit = */interfaces.py
+       */interfaces/*
+       */tests.py
+       */tests/*
+
+[html]
+directory = coverage-report

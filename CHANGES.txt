@@ -1,0 +1,8 @@
+=====================================
+Change log for pyramid_dogpile_cache2
+=====================================
+
+1.0 (unreleased)
+================
+
+- Initial release.
