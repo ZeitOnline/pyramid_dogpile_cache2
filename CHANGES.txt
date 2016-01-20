@@ -5,7 +5,7 @@ Change log for pyramid_dogpile_cache2
 1.0.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Actually include the class name in the cache key for methods.
 
 
 1.0.0 (2016-01-19)

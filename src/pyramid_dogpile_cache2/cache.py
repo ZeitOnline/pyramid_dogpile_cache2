@@ -9,18 +9,6 @@ def key_generator(ns, fn, to_str=dogpile.cache.compat.text_type):
     non-ascii function arguments, and supports not just plain functions, but
     methods as well.
     """
-    if isinstance(fn, types.MethodType):
-        if dogpile.cache.compat.py3k:
-            cls = fn.__self__.__class__
-        else:
-            cls = fn.im_self.__class__
-        namespace = u'.'.join([cls.__module__, cls.__name__, fn.__name__])
-    else:
-        namespace = u'.'.join([fn.__module__, fn.__name__])
-
-    if ns is not None:
-        namespace = u'%s|%s' % (namespace, ns)
-
     args = inspect.getargspec(fn)
     has_self = args[0] and args[0][0] in ('self', 'cls')
 
@@ -29,8 +17,18 @@ def key_generator(ns, fn, to_str=dogpile.cache.compat.text_type):
             raise ValueError(
                 "dogpile.cache's default key creation "
                 "function does not accept keyword arguments.")
-        if has_self:
+        if has_self and args:
+            cls = args[0].__class__
             args = args[1:]
+        else:
+            cls = None
+
+        if cls:
+            namespace = u'.'.join([cls.__module__, cls.__name__, fn.__name__])
+        else:
+            namespace = u'.'.join([fn.__module__, fn.__name__])
+        if ns is not None:
+            namespace = u'%s|%s' % (namespace, ns)
 
         return namespace + u'|' + u' '.join(map(to_str, args))
     return generate_key

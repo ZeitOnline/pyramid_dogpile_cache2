@@ -1,4 +1,5 @@
 # coding: utf-8
+from pyramid_dogpile_cache2 import get_region
 import dogpile.cache.compat
 import dogpile.cache.util
 import pyramid_dogpile_cache2.cache
@@ -43,3 +44,17 @@ def test_key_generator_adds_class_name_for_methods():
     assert gen() == 'pyramid_dogpile_cache2.tests.test_cache.plain_function|'
     gen = pyramid_dogpile_cache2.cache.key_generator(None, Foo().method)
     assert gen() == 'pyramid_dogpile_cache2.tests.test_cache.Foo.method|'
+
+
+def test_methods_are_detected_when_decorated(empty_config):
+    region = get_region('test')
+    region.configure('dogpile.cache.memory')
+
+    class Foo(object):
+
+        @region.cache_on_arguments()
+        def method(self):
+            return 42
+
+    Foo().method()
+    assert region.get('pyramid_dogpile_cache2.tests.test_cache.Foo.method|') == 42
