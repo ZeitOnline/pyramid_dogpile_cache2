@@ -1,7 +1,6 @@
 import dogpile.cache.compat
 import hashlib
 import inspect
-import types
 
 
 def key_generator(ns, fn, to_str=dogpile.cache.compat.text_type):
