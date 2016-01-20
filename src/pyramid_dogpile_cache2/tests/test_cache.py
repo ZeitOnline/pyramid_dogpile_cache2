@@ -42,8 +42,9 @@ def test_key_generator_adds_class_name_for_methods():
 
     gen = pyramid_dogpile_cache2.cache.key_generator(None, plain_function)
     assert gen() == 'pyramid_dogpile_cache2.tests.test_cache.plain_function|'
-    gen = pyramid_dogpile_cache2.cache.key_generator(None, Foo().method)
-    assert gen() == 'pyramid_dogpile_cache2.tests.test_cache.Foo.method|'
+    foo = Foo()
+    gen = pyramid_dogpile_cache2.cache.key_generator(None, foo.method)
+    assert gen(foo) == 'pyramid_dogpile_cache2.tests.test_cache.Foo.method|'
 
 
 def test_methods_are_detected_when_decorated(empty_config):
