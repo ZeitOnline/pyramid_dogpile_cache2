@@ -2,6 +2,9 @@
 pyramid_dogpile_cache2
 ======================
 
+.. image:: https://travis-ci.org/ZeitOnline/pyramid_dogpile_cache2.png
+   :target: https://travis-ci.org/ZeitOnline/pyramid_dogpile_cache2
+
 Small `dogpile.cache`_ configuration and access package. It is inspired by
 `pyramid_dogpile_cache`_, which we found unusable since it insists on
 configuring the cache regions in its ``get_region()`` API -- but if you want to
