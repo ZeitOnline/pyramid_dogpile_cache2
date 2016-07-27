@@ -1,13 +1,13 @@
 # coding: utf-8
 from pyramid_dogpile_cache2 import get_region
-import dogpile.cache.compat
+import dogpile.util.compat
 import dogpile.cache.util
 import pyramid_dogpile_cache2.cache
 import pytest
 
 
 @pytest.mark.skipif(
-    dogpile.cache.compat.py3k,
+    dogpile.util.compat.py3k,
     reason='dogpile.cache defines string_type=str in both py2 and py3, '
     'which is not the same thing at all, thus this only breaks in py2')
 def test_key_generator_handles_non_ascii_arguments():
