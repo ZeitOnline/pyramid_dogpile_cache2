@@ -1,10 +1,10 @@
-import dogpile.cache.compat
+import dogpile.util.compat
 import hashlib
 import inspect
 
 
-def key_generator(ns, fn, to_str=dogpile.cache.compat.text_type):
-    """Extension of dogpile.cache.util.function_key_generator that handles
+def key_generator(ns, fn, to_str=dogpile.util.compat.text_type):
+    """Extension of dogpile.util.function_key_generator that handles
     non-ascii function arguments, and supports not just plain functions, but
     methods as well.
     """
@@ -34,5 +34,5 @@ def key_generator(ns, fn, to_str=dogpile.cache.compat.text_type):
 
 
 def sha1_mangle_key(key):
-    """Extension of dogpile.cache.util.sha1_mangle_key that handles unicode."""
+    """Extension of dogpile.util.sha1_mangle_key that handles unicode."""
     return hashlib.sha1(key.encode('utf-8')).hexdigest()
