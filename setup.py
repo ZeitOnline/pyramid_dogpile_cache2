@@ -1,7 +1,6 @@
 """Integrates dogpile.cache for Pyramid
 """
 from setuptools import setup, find_packages
-import glob
 import os.path
 
 
@@ -48,6 +47,5 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     include_package_data=True,
-    data_files=[('', glob.glob(project_path('*.txt')))],
     zip_safe=False,
 )
