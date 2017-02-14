@@ -10,7 +10,7 @@ def project_path(*names):
 
 setup(
     name='pyramid_dogpile_cache2',
-    version='1.0.3',
+    version='1.0.4.dev0',
 
     install_requires=[
         'Beaker',  # For parsing pylibmc behaviors from ini file.
