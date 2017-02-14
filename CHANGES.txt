@@ -5,7 +5,7 @@ Change log for pyramid_dogpile_cache2
 1.0.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix packaging issue (see PR #2).
 
 
 1.0.2 (2016-08-01)
