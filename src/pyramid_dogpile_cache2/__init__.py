@@ -1,6 +1,7 @@
 from pyramid_dogpile_cache import build_dogpile_region_settings_from_settings
 import beaker.util
 import dogpile.cache
+import dogpile.cache.backends.memory
 import dogpile.cache.exception
 
 
@@ -30,11 +31,13 @@ def get_region(name):
 
 
 def clear():
-    """Removes all cached values from all configured cache regions."""
+    """Removes all cached values from all configured in-memory cache regions.
+    Useful for unit tests.
+    """
     for region in CACHE_REGIONS.values():
-        if 'backend' not in region.__dict__:
-            continue
-        region.backend._cache.clear()
+        backend = getattr(region, 'backend', None)
+        if isinstance(backend, dogpile.cache.backends.memory.MemoryBackend):
+            region.backend._cache.clear()
 
 
 def includeme(config):
