@@ -5,7 +5,8 @@ Change log for pyramid_dogpile_cache2
 1.0.4 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Support caching functions with type annotations on Python 3
+  (see PR #5).
 
 
 1.0.3 (2017-02-14)
