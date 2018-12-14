@@ -1,7 +1,7 @@
 language: python
 python:
 - "2.7"
-- "3.4"
+- "3.7"
 install:
 - travis_retry pip install tox==2.3.1
 - travis_retry pip install --no-deps tox-travis==0.2

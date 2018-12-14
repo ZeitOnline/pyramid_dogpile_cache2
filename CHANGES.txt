@@ -5,7 +5,7 @@ Change log for pyramid_dogpile_cache2
 1.0.5 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Clarify Python-3 compatiblity (it's >=3.4, not _just_ 3.4)
 
 
 1.0.4 (2018-11-21)

@@ -12,7 +12,7 @@ use the ``@cache_on_arguments`` decorator, that is at **import time**, where no
 configuration exists yet. Our package wants to perform the configuration during
 the WSGI application setup instead.
 
-This package is compatible with Python version 2.7 and 3.4.
+This package is compatible with Python version 2.7 and 3 (>=3.4).
 
 .. _`dogpile.cache`: https://pypi.python.org/pypi/dogpile.cache
 .. _`pyramid_dogpile_cache`: https://pypi.python.org/pypi/pyramid_dogpile_cache
