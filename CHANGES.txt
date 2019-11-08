@@ -2,7 +2,7 @@
 Change log for pyramid_dogpile_cache2
 =====================================
 
-1.0.6 (unreleased)
+1.0.6 (2019-11-08)
 ==================
 
 - Allow configuring no expiration time at all
