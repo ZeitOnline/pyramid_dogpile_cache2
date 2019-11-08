@@ -20,9 +20,6 @@ def test_key_generator_handles_non_ascii_arguments():
 
 
 def test_mangle_key_handles_non_ascii_arguments():
-    with pytest.raises(Exception):
-        dogpile.cache.util.sha1_mangle_key(u'föö')
-
     pyramid_dogpile_cache2.cache.sha1_mangle_key(u'föö')
 
 

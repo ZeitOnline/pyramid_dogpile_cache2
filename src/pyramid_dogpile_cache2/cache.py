@@ -37,5 +37,9 @@ def key_generator(ns, fn, to_str=dogpile.util.compat.text_type):
 
 
 def sha1_mangle_key(key):
-    """Extension of dogpile.util.sha1_mangle_key that handles unicode."""
+    """Extension of dogpile.util.sha1_mangle_key that handles unicode.
+
+    The upstream version was fixed in dogpile.cache-0.9.0, so this is only
+    left here for bw-compat.
+    """
     return hashlib.sha1(key.encode('utf-8')).hexdigest()
