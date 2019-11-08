@@ -85,11 +85,12 @@ The following settings are supported:
 ``dogpile_cache.expiration_time``
 
     The default expiration time. Can be overridden for individual regions (in
-    seconds).
+    seconds). Omit to set no expiration.
 
 ``dogpile_cache.REGION.expiration_time``
 
     The expiration time for the given cache region (in seconds).
+    If omitted, uses the global expiration_time setting.
 
 ``dogpile_cache.arguments.*``
 

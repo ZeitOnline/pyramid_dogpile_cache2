@@ -52,11 +52,12 @@ def configure_dogpile_cache(settings):
 
     for name, settings in region_settings.items():
         # XXX Type conversion for all sorts of settings is woefully incomplete.
-        settings['expiration_time'] = int(settings['expiration_time'])
-        settings.setdefault(
-            'arguments.memcached_expire_time', settings['expiration_time'] +
-            int(settings.get(
-                'memcache_expire_time_interval', 30)))
+        if 'expiration_time' in settings:
+            settings['expiration_time'] = exp = int(
+                settings['expiration_time'])
+            settings.setdefault(
+                'arguments.memcached_expire_time', exp +
+                int(settings.get('memcache_expire_time_interval', 30)))
 
         region = get_region(name)
         # XXX kludgy: Remove any existing backend configuration, so
