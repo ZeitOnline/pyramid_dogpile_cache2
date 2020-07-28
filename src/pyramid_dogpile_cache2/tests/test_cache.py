@@ -1,22 +1,15 @@
 # coding: utf-8
 from pyramid_dogpile_cache2 import get_region
-import dogpile.util.compat
 import dogpile.cache.util
 import pyramid_dogpile_cache2.cache
-import pytest
 
 
-@pytest.mark.skipif(
-    dogpile.util.compat.py3k,
-    reason='dogpile.cache defines string_type=str in both py2 and py3, '
-    'which is not the same thing at all, thus this only breaks in py2')
-def test_key_generator_handles_non_ascii_arguments():
-    gen = dogpile.cache.util.function_key_generator(None, lambda: None)
-    with pytest.raises(UnicodeEncodeError):
-        gen(u'föö')
+def test_key_generator_handles_type_annotations():
+    def function_with_annotations() -> None:
+        pass
 
-    gen = pyramid_dogpile_cache2.cache.key_generator(None, lambda: None)
-    gen(u'föö')
+    gen = pyramid_dogpile_cache2.cache.key_generator(None, function_with_annotations)
+    assert gen() == 'pyramid_dogpile_cache2.tests.test_cache.function_with_annotations|'
 
 
 def test_mangle_key_handles_non_ascii_arguments():

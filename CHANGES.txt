@@ -2,10 +2,10 @@
 Change log for pyramid_dogpile_cache2
 =====================================
 
-1.0.7 (unreleased)
+1.1.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Drop Python-2 compatibility, update to dogpile.cache>=1.0
 
 
 1.0.6 (2019-11-08)

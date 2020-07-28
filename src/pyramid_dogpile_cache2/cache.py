@@ -1,17 +1,13 @@
-import dogpile.util.compat
 import hashlib
 import inspect
 
 
-def key_generator(ns, fn, to_str=dogpile.util.compat.text_type):
+def key_generator(ns, fn, to_str=str):
     """Extension of dogpile.util.function_key_generator that handles
     non-ascii function arguments, and supports not just plain functions, but
     methods as well.
     """
-    if dogpile.util.compat.py2k:
-        args = inspect.getargspec(fn)
-    else:
-        args = inspect.getfullargspec(fn)
+    args = inspect.getfullargspec(fn)
     has_self = args[0] and args[0][0] in ('self', 'cls')
 
     def generate_key(*args, **kw):
