@@ -78,14 +78,14 @@ def configure_dogpile_cache(settings):
 def _parse_dogpile_cache_settings(settings):
     # XXX Woefully incomplete. This only supports pylibmc, and our specific
     # use-case: all regions use the same memcache settings.
-    if 'dogpile_cache.pylibmc_url' in settings:
+    if settings.get('dogpile_cache.pylibmc_url'):
         settings['dogpile_cache.arguments.url'] = settings[
             'dogpile_cache.pylibmc_url'].split(';')
         del settings['dogpile_cache.pylibmc_url']
 
     for key in ['dogpile_cache.arguments.lock_timeout',
                 'dogpile_cache.arguments.memcache_expire_time']:
-        if key in settings:
+        if settings.get(key):
             settings[key] = int(settings[key])
 
     behaviors = {}

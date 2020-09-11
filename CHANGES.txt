@@ -5,7 +5,7 @@ Change log for pyramid_dogpile_cache2
 1.1.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Ignore empty `pylibmc_url` setting
 
 
 1.1.0 (2020-07-28)
