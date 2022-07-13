@@ -64,6 +64,8 @@ def configure_dogpile_cache(settings):
         # configure_dogpile_cache() may be called multiple times (which
         # should only happen in tests).
         region.__dict__.pop('backend', None)
+        # Pop cached actual_backend value as well (to prevent cache mismatch)
+        region.__dict__.pop('_actual_backend', None)
         region.configure_from_config(settings, prefix='')
 
     # Since get_region() returns an unconfigured region for *any* name you

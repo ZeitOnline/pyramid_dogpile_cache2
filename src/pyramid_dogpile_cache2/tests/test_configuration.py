@@ -70,3 +70,34 @@ def test_unconfigured_region_raises(empty_config):
             'dogpile_cache.backend': 'dogpile.cache.memory',
             'dogpile_cache.expiration_time': '1',
         })
+
+
+def test_multiple_calls_clear_backend(empty_config):
+    configure_dogpile_cache({
+        'dogpile_cache.regions': 'foo',
+        'dogpile_cache.backend': 'dogpile.cache.memory',
+        'dogpile_cache.expiration_time': '1',
+    })
+
+    region = get_region('foo')
+
+    # Init cached value in region
+    _ = region.actual_backend
+
+    original_backend = region.backend
+    assert region.actual_backend == original_backend
+
+    configure_dogpile_cache({
+        'dogpile_cache.regions': 'foo',
+        'dogpile_cache.backend': 'dogpile.cache.memory',
+        'dogpile_cache.expiration_time': '1',
+    })
+
+    # Confirm region is back to fresh state
+    new_backend = region.backend
+    assert new_backend != original_backend
+    assert region._actual_backend is None
+
+    # Regen cached value. Confirm cache points to new backend
+    _ = region.actual_backend
+    assert region.actual_backend == new_backend
