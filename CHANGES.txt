@@ -5,7 +5,8 @@ Change log for pyramid_dogpile_cache2
 1.2.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Clear internal `_actual_backend` during configure,
+  to improve test isolation
 
 
 1.1.1 (2020-09-11)
