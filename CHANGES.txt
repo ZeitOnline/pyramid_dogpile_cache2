@@ -2,7 +2,7 @@
 Change log for pyramid_dogpile_cache2
 =====================================
 
-1.2.0 (unreleased)
+1.1.2 (2022-07-15)
 ==================
 
 - Clear internal `_actual_backend` during configure,
