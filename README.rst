@@ -11,8 +11,8 @@ the WSGI application setup instead.
 
 This package is compatible with Python version >=3.6.
 
-.. _`dogpile.cache`: https://pypi.python.org/pypi/dogpile.cache
-.. _`pyramid_dogpile_cache`: https://pypi.python.org/pypi/pyramid_dogpile_cache
+.. _`dogpile.cache`: https://python.org/project/dogpile-cache/
+.. _`pyramid_dogpile_cache`: https://pypi.org/project/pyramid-dogpile-cache/
 
 
 Usage
