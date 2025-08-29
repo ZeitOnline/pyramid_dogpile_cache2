@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR/..
+
+export UV_NO_MANAGED_PYTHON=1
+uv sync --frozen
+exec .venv/bin/pytest "$@"

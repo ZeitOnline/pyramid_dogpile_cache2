@@ -1,0 +1,54 @@
+[project]
+name = "pyramid_dogpile_cache2"
+description = "Integrates dogpile.cache for Pyramid"
+version = "1.2.0.dev0"
+
+dependencies = [
+    "dogpile.cache >= 1.0.0.dev0",
+    "pyramid_dogpile_cache",  # For ini file parsing helpers.
+]
+
+authors = [{name="DIE ZEIT", email="engineering@zeit.de"}]
+license = {text="BSD-3-Clause"}
+urls = {repository="https://github.com/zeitonline/pyramid_dogpile_cache2"}
+requires-python = ">=3.7"
+
+keywords = ["pyramid", "dogpile.cache"]
+classifiers = [
+    "Environment :: Plugins",
+    "Framework :: Pyramid",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+]
+
+dynamic = ["readme"]
+
+[dependency-groups]
+dev = ["pytest"]
+release = ["towncrier"]
+
+
+[build-system]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+exclude = ["/bin", "/changelog"]
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/x-rst"
+fragments = [{path="README.rst"}, {text="\n\n"}, {path="HACKING.rst"}, {text="\n\n"}, {path="CHANGES.txt"}]
+
+
+[tool.pytest.ini_options]
+addopts = "--tb=native"
+
+
+[tool.towncrier]
+directory = "changelog/"
+filename = "CHANGES.txt"
+
+[[tool.towncrier.type]]
+directory = "change"
+name = ""
+showcontent = true

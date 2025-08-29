@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ROOT="$(dirname $DIR)"
+
+cd $ROOT
+export UV_NO_MANAGED_PYTHON=1
+uv sync --frozen --only-group release
+export venv=$ROOT/.venv/bin
+
+if $venv/towncrier build --version develop --draft 2>&1 | \
+       grep -q "No significant changes"; then
+    exit 1
+fi
+
+version=$(uv version --frozen --short | sed -e 's/\.dev[0-9]*$//')
+uv version "$version"
+
+$venv/towncrier build --version="$version" --yes
+git commit pyproject.toml uv.lock CHANGES.txt changelog/ -m "Preparing release: $version"
+git tag "$version"
+
+uv build
+if [[ -z "$VAULT_TOKEN" ]]; then
+    VAULT_TOKEN=$(<"$HOME/.vault-token")
+fi
+token=$(curl --silent -H "X-Vault-Token: $VAULT_TOKEN" \
+        "${VAULT_ADDR%/}/v1/zon/v1/pypi/zon-backend" | \
+        sed -e 's+^.*"token":"\([^"]*\).*$+\1+')
+uv publish --token "$token"
+
+version="$(uv version --frozen --short --dry-run --bump minor).dev0"
+uv version "$version"
+git commit pyproject.toml uv.lock -m "Back to development: $version"
+
+rm -rf dist
+
+git push
+git push --tags
