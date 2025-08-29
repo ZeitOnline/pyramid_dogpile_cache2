@@ -4,6 +4,14 @@ Change log for pyramid_dogpile_cache2
 
 .. towncrier release notes start
 
+1.2.0 (2025-08-29)
+==================
+
+
+
+
+- Vendor pylibmc parsing code after beaker removed it in 1.14 (beaker)
+
 
 1.1.2 (2022-07-15)
 ==================
