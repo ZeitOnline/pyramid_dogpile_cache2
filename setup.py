@@ -15,7 +15,6 @@ setup(
     install_requires=[
         'dogpile.cache >= 1.0.0.dev0',
         'pyramid_dogpile_cache',  # For ini file parsing helpers.
-        'setuptools',
     ],
 
     author='Zeit Online',
