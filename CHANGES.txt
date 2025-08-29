@@ -5,7 +5,7 @@ Change log for pyramid_dogpile_cache2
 1.2.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Vendor pylibmc parsing code after beaker removed it in 1.14
 
 
 1.1.2 (2022-07-15)

@@ -105,12 +105,12 @@ Backend arguments work only for strings, thus we support some custom treatment:
 
 ``dogpile_cache.pylibmc_behavior.*``
 
-    Set `pylibmc behaviours`_, see `coerce_memached_behaviors`_ for which
+    Set `pylibmc behaviours`_, see `pylibmc convert`_ for which
     subkeys are supported.
 
 
 .. _`pylibmc behaviours`: http://sendapatch.se/projects/pylibmc/behaviors.html
-.. _`coerce_memached_behaviors`: https://github.com/bbangert/beaker/blob/master/beaker/util.py#L343
+.. _`pylibmc convert`: https://github.com/ZeitOnline/pyramid_dogpile_cache2/blob/main/src/pyramid_dogpile_cache2/pylibmc.py
 
 Note: As opposed to pyramid_dogpile_cache we don't support overriding the
 key_generator or key_mangler functions yet; we preconfigure them with enhanced

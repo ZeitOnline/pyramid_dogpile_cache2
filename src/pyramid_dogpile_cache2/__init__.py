@@ -1,5 +1,4 @@
 from pyramid_dogpile_cache import build_dogpile_region_settings_from_settings
-import beaker.util
 import dogpile.cache
 import dogpile.cache.backends.memory
 import dogpile.cache.exception
@@ -99,7 +98,7 @@ def _parse_dogpile_cache_settings(settings):
         behaviors[key.replace(behavior_prefix, '')] = value
         to_remove.append(key)
     if behaviors:
-        convert = beaker.util.coerce_memcached_behaviors
-        settings['dogpile_cache.arguments.behaviors'] = convert(behaviors)
+        from pyramid_dogpile_cache2 import pylibmc
+        settings['dogpile_cache.arguments.behaviors'] = pylibmc.convert(behaviors)
         for key in to_remove:
             del settings[key]
