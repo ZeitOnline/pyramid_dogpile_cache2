@@ -45,7 +45,7 @@ def test_sets_memcache_expire_time_to_later_than_expiration_time(
         'dogpile_cache.expiration_time': '1',
         'dogpile_cache.memcache_expire_time_interval': '5'
     })
-    assert get_region('foo').backend.memcached_expire_time == 6
+    assert get_region('foo').backend.set_arguments['time'] == 6
 
 
 def test_sets_pylibmc_behaviours(empty_config, monkeypatch):
