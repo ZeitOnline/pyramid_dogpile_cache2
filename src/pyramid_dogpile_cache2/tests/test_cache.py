@@ -1,6 +1,7 @@
 # coding: utf-8
-from pyramid_dogpile_cache2 import get_region
 import dogpile.cache.util
+
+from pyramid_dogpile_cache2 import get_region
 import pyramid_dogpile_cache2.cache
 
 
@@ -13,7 +14,7 @@ def test_key_generator_handles_type_annotations():
 
 
 def test_mangle_key_handles_non_ascii_arguments():
-    pyramid_dogpile_cache2.cache.sha1_mangle_key(u'föö')
+    pyramid_dogpile_cache2.cache.sha1_mangle_key('föö')
 
 
 def test_key_generator_adds_class_name_for_methods():
@@ -21,7 +22,6 @@ def test_key_generator_adds_class_name_for_methods():
         pass
 
     class Foo(object):
-
         def method(self):
             pass
 
@@ -42,7 +42,6 @@ def test_methods_are_detected_when_decorated(empty_config):
     region.configure('dogpile.cache.memory')
 
     class Foo(object):
-
         @region.cache_on_arguments()
         def method(self):
             return 42

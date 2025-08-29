@@ -13,8 +13,8 @@ def key_generator(ns, fn, to_str=str):
     def generate_key(*args, **kw):
         if kw:
             raise ValueError(
-                "dogpile.cache's default key creation "
-                "function does not accept keyword arguments.")
+                "dogpile.cache's default key creation function does not accept keyword arguments."
+            )
         if has_self and args:
             cls = args[0].__class__
             args = args[1:]
@@ -22,13 +22,14 @@ def key_generator(ns, fn, to_str=str):
             cls = None
 
         if cls:
-            namespace = u'.'.join([cls.__module__, cls.__name__, fn.__name__])
+            namespace = '.'.join([cls.__module__, cls.__name__, fn.__name__])
         else:
-            namespace = u'.'.join([fn.__module__, fn.__name__])
+            namespace = '.'.join([fn.__module__, fn.__name__])
         if ns is not None:
-            namespace = u'%s|%s' % (namespace, ns)
+            namespace = '%s|%s' % (namespace, ns)
 
-        return namespace + u'|' + u' '.join(map(to_str, args))
+        return namespace + '|' + ' '.join(map(to_str, args))
+
     return generate_key
 
 

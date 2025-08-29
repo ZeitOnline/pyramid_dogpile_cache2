@@ -23,9 +23,8 @@ def get_region(name):
 
     if name not in CACHE_REGIONS:
         CACHE_REGIONS[name] = dogpile.cache.make_region(
-            name,
-            function_key_generator=key_generator,
-            key_mangler=sha1_mangle_key)
+            name, function_key_generator=key_generator, key_mangler=sha1_mangle_key
+        )
     return CACHE_REGIONS[name]
 
 
@@ -52,11 +51,11 @@ def configure_dogpile_cache(settings):
     for name, settings in region_settings.items():
         # XXX Type conversion for all sorts of settings is woefully incomplete.
         if 'expiration_time' in settings:
-            settings['expiration_time'] = exp = int(
-                settings['expiration_time'])
+            settings['expiration_time'] = exp = int(settings['expiration_time'])
             settings.setdefault(
-                'arguments.memcached_expire_time', exp +
-                int(settings.get('memcache_expire_time_interval', 30)))
+                'arguments.memcached_expire_time',
+                exp + int(settings.get('memcache_expire_time_interval', 30)),
+            )
 
         region = get_region(name)
         # XXX kludgy: Remove any existing backend configuration, so
@@ -72,20 +71,21 @@ def configure_dogpile_cache(settings):
     for region in CACHE_REGIONS.values():
         if 'backend' not in region.__dict__:
             raise dogpile.cache.exception.RegionNotConfigured(
-                'Region %r used in python code, but not configured' %
-                region.name)
+                'Region %r used in python code, but not configured' % region.name
+            )
 
 
 def _parse_dogpile_cache_settings(settings):
     # XXX Woefully incomplete. This only supports pylibmc, and our specific
     # use-case: all regions use the same memcache settings.
     if settings.get('dogpile_cache.pylibmc_url'):
-        settings['dogpile_cache.arguments.url'] = settings[
-            'dogpile_cache.pylibmc_url'].split(';')
+        settings['dogpile_cache.arguments.url'] = settings['dogpile_cache.pylibmc_url'].split(';')
         del settings['dogpile_cache.pylibmc_url']
 
-    for key in ['dogpile_cache.arguments.lock_timeout',
-                'dogpile_cache.arguments.memcache_expire_time']:
+    for key in [
+        'dogpile_cache.arguments.lock_timeout',
+        'dogpile_cache.arguments.memcache_expire_time',
+    ]:
         if settings.get(key):
             settings[key] = int(settings[key])
 
@@ -99,6 +99,7 @@ def _parse_dogpile_cache_settings(settings):
         to_remove.append(key)
     if behaviors:
         from pyramid_dogpile_cache2 import pylibmc
+
         settings['dogpile_cache.arguments.behaviors'] = pylibmc.convert(behaviors)
         for key in to_remove:
             del settings[key]

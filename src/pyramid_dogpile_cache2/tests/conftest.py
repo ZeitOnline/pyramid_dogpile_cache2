@@ -1,5 +1,6 @@
-import pyramid_dogpile_cache2
 import pytest
+
+import pyramid_dogpile_cache2
 
 
 @pytest.fixture
