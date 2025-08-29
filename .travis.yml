@@ -1,8 +1,0 @@
-language: python
-python:
-- "3.6"
-install:
-- travis_retry pip install tox==2.3.1
-- travis_retry pip install --no-deps tox-travis==0.2
-script:
-- travis_retry tox
