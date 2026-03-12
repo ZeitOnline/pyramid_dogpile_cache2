@@ -27,42 +27,40 @@ import re
 
 def build_dogpile_region_settings(settings):
     region_settings_dict = {}
+    prefix = 'dogpile_cache.'
 
     # pass 1: retrieve settings and put them into the dictionary
     for key, value in settings.items():
-        for prefix in ('dogpile.cache.', 'dogpile_cache.'):
-            if key.startswith(prefix):
-                region_name, dot, param_name = key[len(prefix) :].partition('.')
-                if not dot:
-                    if region_name == 'regions':
-                        # dogpile.cache.regions = foo, bar ...
-                        # dogpile_cache.regions = foo, bar ...
-                        region_names = re.split(r'(?:\s*,\s*|\s+)', value.strip(' '))
-                        for region_name in region_names:
-                            if region_name in ('regions', 'arguments'):
-                                raise ValueError('region name %s is not allowed' % region_name)
-                            if region_name and region_name not in region_settings_dict:
-                                region_settings_dict[region_name] = {}
-                        continue
-                    else:
-                        # dogpile_cache.backend = ...
-                        # dogpile_cache.expiration_time = ...
-                        param_name = region_name
-                        region_name = ''
-                        if param_name == 'name':
-                            raise ValueError(
-                                'parameter %s is not allowed for the default cache settings' % key
-                            )
-                elif region_name == 'arguments':
-                    # dogpile.cache.arguments.filename = /tmp ...
-                    # dogpile_cache.arguments.host = localhost ...
-                    param_name = region_name + '.' + param_name
+        if key.startswith(prefix):
+            region_name, dot, param_name = key[len(prefix) :].partition('.')
+            if not dot:
+                if region_name == 'regions':
+                    # dogpile_cache.regions = foo, bar ...
+                    region_names = re.split(r'(?:\s*,\s*|\s+)', value.strip(' '))
+                    for region_name in region_names:
+                        if region_name in ('regions', 'arguments'):
+                            raise ValueError('region name %s is not allowed' % region_name)
+                        if region_name and region_name not in region_settings_dict:
+                            region_settings_dict[region_name] = {}
+                    continue
+                else:
+                    # dogpile_cache.backend = ...
+                    # dogpile_cache.expiration_time = ...
+                    param_name = region_name
                     region_name = ''
+                    if param_name == 'name':
+                        raise ValueError(
+                            'parameter %s is not allowed for the default cache settings' % key
+                        )
+            elif region_name == 'arguments':
+                # dogpile_cache.arguments.host = localhost ...
+                param_name = region_name + '.' + param_name
+                region_name = ''
 
-                region_settings = region_settings_dict.get(region_name)
-                if not region_settings:
-                    region_settings = region_settings_dict[region_name] = {}
-                region_settings[param_name] = value
+            region_settings = region_settings_dict.get(region_name)
+            if not region_settings:
+                region_settings = region_settings_dict[region_name] = {}
+            region_settings[param_name] = value
 
     # pass 2: combine region-specific settings with defaults
     default_settings = region_settings_dict.get('', {})
