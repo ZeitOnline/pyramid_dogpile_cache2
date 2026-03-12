@@ -24,8 +24,6 @@ THE SOFTWARE.
 
 import re
 
-from pyramid.exceptions import ConfigurationError
-
 
 def build_dogpile_region_settings(settings):
     region_settings_dict = {}
@@ -42,9 +40,7 @@ def build_dogpile_region_settings(settings):
                         region_names = re.split('(?:\s*,\s*|\s+)', value.strip(' '))
                         for region_name in region_names:
                             if region_name in ('regions', 'arguments'):
-                                raise ConfigurationError(
-                                    'region name %s is not allowed' % region_name
-                                )
+                                raise ValueError('region name %s is not allowed' % region_name)
                             if region_name and region_name not in region_settings_dict:
                                 region_settings_dict[region_name] = {}
                         continue
@@ -54,7 +50,7 @@ def build_dogpile_region_settings(settings):
                         param_name = region_name
                         region_name = ''
                         if param_name == 'name':
-                            raise ConfigurationError(
+                            raise ValueError(
                                 'parameter %s is not allowed for the default cache settings' % key
                             )
                 elif region_name == 'arguments':
