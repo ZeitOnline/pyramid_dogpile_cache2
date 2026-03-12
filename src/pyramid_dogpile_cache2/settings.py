@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import re
-
 
 def build_dogpile_region_settings(settings):
     region_settings_dict = {}
@@ -36,8 +34,8 @@ def build_dogpile_region_settings(settings):
             if not dot:
                 if region_name == 'regions':
                     # dogpile_cache.regions = foo, bar ...
-                    region_names = re.split(r'(?:\s*,\s*|\s+)', value.strip(' '))
-                    for region_name in region_names:
+                    for region_name in value.split(','):
+                        region_name = region_name.strip()
                         if region_name in ('regions', 'arguments'):
                             raise ValueError('region name %s is not allowed' % region_name)
                         if region_name and region_name not in region_settings_dict:
