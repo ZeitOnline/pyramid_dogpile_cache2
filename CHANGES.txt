@@ -4,6 +4,15 @@ Change log for pyramid_dogpile_cache2
 
 .. towncrier release notes start
 
+1.3.0 (2026-03-12)
+==================
+
+
+
+
+- Remove dependency on pyramid_dogpile_cache, instead vendor the small bit of code we use (settings)
+
+
 1.2.0 (2025-08-29)
 ==================
 
