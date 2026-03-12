@@ -37,7 +37,7 @@ def build_dogpile_region_settings(settings):
                     if region_name == 'regions':
                         # dogpile.cache.regions = foo, bar ...
                         # dogpile_cache.regions = foo, bar ...
-                        region_names = re.split('(?:\s*,\s*|\s+)', value.strip(' '))
+                        region_names = re.split(r'(?:\s*,\s*|\s+)', value.strip(' '))
                         for region_name in region_names:
                             if region_name in ('regions', 'arguments'):
                                 raise ValueError('region name %s is not allowed' % region_name)
