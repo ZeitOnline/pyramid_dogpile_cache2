@@ -1,0 +1,1 @@
+Remove dependency on pyramid_dogpile_cache, instead vendor the small bit of code we use

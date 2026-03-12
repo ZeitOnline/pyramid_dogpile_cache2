@@ -1,4 +1,3 @@
-from pyramid_dogpile_cache import build_dogpile_region_settings_from_settings
 import dogpile.cache
 import dogpile.cache.backends.memory
 import dogpile.cache.exception
@@ -45,8 +44,12 @@ def includeme(config):
 def configure_dogpile_cache(settings):
     # This is somewhat inspired by pyramid_dogpile_cache.includeme()
     # and build_dogpile_region_from_dict().
+
+    # Prevent import cycle
+    from pyramid_dogpile_cache2.settings import build_dogpile_region_settings
+
     _parse_dogpile_cache_settings(settings)
-    _, region_settings = build_dogpile_region_settings_from_settings(settings)
+    _, region_settings = build_dogpile_region_settings(settings)
 
     for name, settings in region_settings.items():
         # XXX Type conversion for all sorts of settings is woefully incomplete.
