@@ -72,9 +72,6 @@ def build_dogpile_region_settings(settings):
             if key not in region_settings:
                 region_settings[key] = value
 
-    try:
-        del region_settings_dict['']
-    except KeyError:
-        pass
+    region_settings_dict.pop('', None)
 
     return default_settings, region_settings_dict
