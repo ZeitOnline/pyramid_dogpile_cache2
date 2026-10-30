@@ -1,7 +1,6 @@
 [project]
 name = "pyramid_dogpile_cache2"
 description = "Integrates dogpile.cache for Pyramid"
-version = "1.4.0.dev0"
 
 dependencies = [
     "dogpile.cache >= 1.0.0.dev0",
@@ -20,37 +19,29 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
 ]
 
-dynamic = ["readme"]
+dynamic = ["readme", "version"]
 
 [dependency-groups]
 dev = ["pytest"]
-release = ["towncrier"]
 
 
 [build-system]
-requires = ["hatchling", "hatch-fancy-pypi-readme"]
+requires = ["hatchling", "hatch-fancy-pypi-readme", "hatch-vcs"]
 build-backend = "hatchling.build"
 
+[tool.hatch.version]
+source = "vcs"
+
 [tool.hatch.build]
-exclude = ["/bin", "/changelog"]
+exclude = ["/bin"]
 
 [tool.hatch.metadata.hooks.fancy-pypi-readme]
-content-type = "text/x-rst"
-fragments = [{path="README.rst"}, {text="\n\n"}, {path="HACKING.rst"}, {text="\n\n"}, {path="CHANGES.txt"}]
+content-type = "text/markdown"
+fragments = [{path="README.md"}, {text="\n\n"}, {path="HACKING.md"}, {text="\n\n"}, {path="CHANGES.md"}]
 
 
 [tool.pytest.ini_options]
 addopts = "--tb=native"
-
-
-[tool.towncrier]
-directory = "changelog/"
-filename = "CHANGES.txt"
-
-[[tool.towncrier.type]]
-directory = "change"
-name = ""
-showcontent = true
 
 
 [tool.ruff]

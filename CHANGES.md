@@ -1,84 +1,51 @@
-=====================================
-Change log for pyramid_dogpile_cache2
-=====================================
+# Changelog
 
-.. towncrier release notes start
-
-1.3.0 (2026-03-12)
-==================
-
-
-
+## 1.3.0 (2026-03-12)
 
 - Remove dependency on pyramid_dogpile_cache, instead vendor the small bit of code we use (settings)
 
-
-1.2.0 (2025-08-29)
-==================
-
-
-
+## 1.2.0 (2025-08-29)
 
 - Vendor pylibmc parsing code after beaker removed it in 1.14 (beaker)
 
-
-1.1.2 (2022-07-15)
-==================
+## 1.1.2 (2022-07-15)
 
 - Clear internal `_actual_backend` during configure,
   to improve test isolation
 
-
-1.1.1 (2020-09-11)
-==================
+## 1.1.1 (2020-09-11)
 
 - Ignore empty `pylibmc_url` setting
 
-
-1.1.0 (2020-07-28)
-==================
+## 1.1.0 (2020-07-28)
 
 - Drop Python-2 compatibility, update to dogpile.cache>=1.0
 
-
-1.0.6 (2019-11-08)
-==================
+## 1.0.6 (2019-11-08)
 
 - Allow configuring no expiration time at all
 
-
-1.0.5 (2018-12-14)
-==================
+## 1.0.5 (2018-12-14)
 
 - Clarify Python-3 compatiblity (it's >=3.4, not _just_ 3.4)
 
-
-1.0.4 (2018-11-21)
-==================
+## 1.0.4 (2018-11-21)
 
 - Support caching functions with type annotations on Python 3
   (see PR #5).
 
-
-1.0.3 (2017-02-14)
-==================
+## 1.0.3 (2017-02-14)
 
 - Fix packaging issue (see PR #2).
 
-
-1.0.2 (2016-08-01)
-==================
+## 1.0.2 (2016-08-01)
 
 - Update API compatibility to dogpile.cache-0.6.0.
 
-
-1.0.1 (2016-01-20)
-==================
+## 1.0.1 (2016-01-20)
 
 - Actually include the class name in the cache key for methods.
 
-
-1.0.0 (2016-01-19)
-==================
+## 1.0.0 (2016-01-19)
 
 - Initial release.
