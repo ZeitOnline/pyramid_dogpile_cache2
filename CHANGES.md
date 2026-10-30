@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/ZeitOnline/pyramid_dogpile_cache2/compare/1.3.0...1.3.1) (2026-10-30)
+
+
+### Maintenance
+
+* release with Release Please via the shared pypi-release workflow ([#9](https://github.com/ZeitOnline/pyramid_dogpile_cache2/issues/9)) ([eb23383](https://github.com/ZeitOnline/pyramid_dogpile_cache2/commit/eb23383680ae6a05ade73354e4f0dcab7525188c))
+
 ## 1.3.0 (2026-03-12)
 
 - Remove dependency on pyramid_dogpile_cache, instead vendor the small bit of code we use (settings)
